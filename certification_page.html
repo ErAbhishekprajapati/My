@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certification Courses</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .course-card {
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border: none;
+            border-radius: 10px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .course-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        .course-card img {
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            height: 150px;
+            object-fit: cover;
+        }
+        .course-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: #333;
+        }
+        .course-description {
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="container my-5">
+        <!-- <h1 class="text-center mb-5">Certification Courses</h1> -->
+        <div class="row g-4">
+            <!-- Course 1 -->
+            <div class="col-md-4">
+                <div class="card course-card">
+                    <img src="image/webdev.JPG" class="card-img-top" alt="Course 1">
+                    <div class="card-body">
+                        <h5 class="course-title">Web Development Bootcamp</h5>
+                        <p class="course-description">Learn how to build websites from scratch with HTML, CSS, and JavaScript. Perfect for beginners!</p>
+                        <p><strong>Duration:</strong> 3 months</p>
+                        <a href="#" class="btn btn-primary">Learn More</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Course 2 -->
+            <div class="col-md-4">
+                <div class="card course-card">
+                    <img src="image/datascience.JPG" class="card-img-top" alt="Course 2">
+                    <div class="card-body">
+                        <h5 class="course-title">Data Science Masterclass</h5>
+                        <p class="course-description">Master data analysis, visualization, and machine learning with Python and R.</p>
+                        <p><strong>Duration:</strong> 6 months</p>
+                        <a href="#" class="btn btn-primary">Learn More</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Course 3 -->
+            <div class="col-md-4">
+                <div class="card course-card">
+                    <img src="image/graphic.JPG" class="card-img-top" alt="Course 3">
+                    <div class="card-body">
+                        <h5 class="course-title">Graphic Design Certification</h5>
+                        <p class="course-description">Learn Adobe Photoshop, Illustrator, and other tools to create stunning designs.</p>
+                        <p><strong>Duration:</strong> 4 months</p>
+                        <a href="#" class="btn btn-primary">Learn More</a>
+                    </div>
+                </div>
+            </div>
+            <!--course 4-->
+            <div class="col-md-4">
+                <div class="card course-card">
+                    <img src="image/graphic.JPG" class="card-img-top" alt="Course 3">
+                    <div class="card-body">
+                        <h5 class="course-title">Graphic Design Certification</h5>
+                        <p class="course-description">Learn Adobe Photoshop, Illustrator, and other tools to create stunning designs.</p>
+                        <p><strong>Duration:</strong> 4 months</p>
+                        <a href="#" class="btn btn-primary">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
