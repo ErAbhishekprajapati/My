@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team List with Video</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #c0392b;
+            color: black;
+            font-family: Arial, sans-serif;
+            position: relative;
+        }
+        .container {
+            position: relative;
+            z-index: 2;
+        }
+        .hover-row {
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+            position: relative;
+            background-color: #c0392b; /* Red background for rows */
+        }
+        .hover-row::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 2px;
+            background-color: black;
+            transform: scaleX(0);
+            transition: transform 0.3s ease-in-out;
+        }
+        .hover-row:hover::after {
+            transform: scaleX(1);
+        }
+        /* Centered Video */
+        .video-container {
+            position: absolute;
+            top: 50%;
+            left: 25%;
+            transform: translate(-50%, -50%);
+            width: 200px; /* Adjust size */
+            height: auto;
+            display: none; /* Initially hidden */
+        }
+        .hover-row:hover .video-container {
+            display: block; /* Show on hover */
+        }
+        /* Text Animation */
+        .loop-text {
+            display: inline-block;
+            transition: transform 0.3s ease-in-out;
+        }
+        .hover-row:hover .loop-text {
+            animation: loopAnimation 0.8s infinite alternate ease-in-out;
+        }
+        @keyframes loopAnimation {
+            0% { transform: translateX(0); }
+            50% { transform: translateX(5px); }
+            100% { transform: translateX(-5px); }
+        }
+        .table {
+            background-color: #c0392b !important;
+        }
+        .video-container {
+            position: absolute;
+            top: 0;
+            right: -210px;
+            z-index: 10;
+            width: 200px;
+            display: none;
+        }
+        .hover-row:hover .video-container {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container py-5">
+    <div class="row">
+        <div class="col-4">01</div>
+        <div class="col-4 text-center">Design</div>
+        <div class="col-4 text-end">9 people</div>
+    </div>
+    
+    <table class="table table-borderless text-black mt-4">
+        <tbody>
+            <tr class="hover-row">
+                <td><span class="loop-text">Abhishek Prajapati</span></td>
+                <td><span class="loop-text">Co-founder - President</span></td>
+                <td><span class="loop-text">2008</span></td>
+                <td>
+                    <div class="video-container">
+                        <img src="back1.gif" alt="background" width="200">
+                            You are Full Stack Developer
+                    </div>
+                </td>
+            </tr>
+            <tr class="hover-row">
+                <td><span class="loop-text">Kevin</span></td>
+                <td><span class="loop-text">Creative Director</span></td>
+                <td><span class="loop-text">2014</span></td>
+                <td>
+                    <div class="video-container">
+                        <img src="back1.gif" alt="background" width="200">
+                            You are Full Stack Developer
+                    </div>
+                </td>
+            </tr>
+            <tr class="hover-row">
+                <td><span class="loop-text">Chirag</span></td>
+                <td><span class="loop-text">Senior Art Director</span></td>
+                <td><span class="loop-text">2017</span></td>
+                <td>
+                    <div class="video-container">
+                        <img src="back1.gif" alt="background" width="200">
+                            You are Full Stack Developer
+                    </div>
+                </td>
+            </tr>
+            <tr class="hover-row">
+                <td><span class="loop-text">XYZ</span></td>
+                <td><span class="loop-text">Lead UX</span></td>
+                <td><span class="loop-text">2020</span></td>
+                <td>
+                    <div class="video-container">
+                        <img src="back1.gif" alt="background" width="200">
+                            You are Full Stack Developer
+                    </div>
+                </td>
+            </tr>       
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
