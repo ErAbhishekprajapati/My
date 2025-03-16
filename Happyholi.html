@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Holi</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(45deg, #ff9a9e, #fad0c4, #fad0c4, #ffdde1);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            font-family: 'Poppins', sans-serif;
+            overflow: hidden;
+        }
+
+        .container {
+            position: relative;
+            width: 900px;
+            height: 500px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            text-align: center;
+        }
+
+        .happy-holi {
+            font-size: 70px;
+            font-weight: bold;
+            color: transparent;
+            background-image: linear-gradient(to left, #FF6B6B, #FFD93D, #6BCB77, #6B9DFD);
+            background-clip: text;
+            -webkit-background-clip: text;
+            animation: colorChange 3s infinite alternate;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            position: absolute;
+            z-index: 2;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%); /* Center the text */
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .happy-holi:hover {
+            transform: scale(1.2) rotate(5deg) translate(-50%, -50%); /* Adjusted for centering */
+        }
+
+        .thrower, .target {
+            width: 170px;
+            height: 170px;
+            object-fit: cover;
+            border-radius: 50%;
+            position: absolute;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s;
+        }
+
+        .thrower {
+            left: 20px;
+        }
+
+        .thrower:hover, .target:hover {
+            transform: scale(1.3) rotate(-10deg);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .target {
+            right: 20px;
+        }
+
+        .particle {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            opacity: 0;
+            animation: explodeAnimation 2s ease-out forwards;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .particle-1 { background-color: #FF6B6B; }
+        .particle-2 { background-color: #FFD93D; }
+        .particle-3 { background-color: #6BCB77; }
+        .particle-4 { background-color: #6B9DFD; }
+
+        /* Running Boy Animation */
+        .running-boy {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 150px; /* Adjust size as needed */
+            height: auto;
+            animation: run 10s linear infinite; /* Running animation */
+        }
+
+        @keyframes run {
+            0% {
+                transform: translateX(-100%); /* Start off-screen */
+            }
+            100% {
+                transform: translateX(100vw); /* Move to the right edge of the screen */
+            }
+        }
+
+        @keyframes explodeAnimation {
+            0% {
+                transform: scale(1) translate(0, 0);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(0.5) translate(var(--x), var(--y));
+                opacity: 0;
+            }
+        }
+
+        @keyframes colorChange {
+            0% { background-image: linear-gradient(to left, #FF6B6B, #FFD93D, #6BCB77, #6B9DFD); }
+            100% { background-image: linear-gradient(to left, #6B9DFD, #6BCB77, #FFD93D, #FF6B6B); }
+        }
+    </style>
+    <!-- Include the Confetti Library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <img class="thrower" src="C:\Users\abhishek prajapati\Desktop\boys.jpg" alt="Throwing Person">
+        <img class="target" src="C:\Users\abhishek prajapati\Desktop\girls.jpg" alt="Target Person">
+        <div class="happy-holi">Happy Holi</div>
+    </div>
+
+    <!-- Running Boy Animation -->
+    <img class="running-boy" src="https://www.animatedimages.org/data/media/1635/animated-walking-image-0004.gif" alt="Running Boy">
+
+    <script>
+        // Function to throw color particles
+        function throwColor() {
+            const colors = ['particle-1', 'particle-2', 'particle-3', 'particle-4'];
+            const numParticles = 40;
+            const container = document.querySelector('.container');
+            const thrower = document.querySelector('.thrower');
+            const target = document.querySelector('.target');
+
+            const throwerPosition = thrower.getBoundingClientRect();
+            const targetPosition = target.getBoundingClientRect();
+
+            for (let i = 0; i < numParticles; i++) {
+                const particle = document.createElement('div');
+                const randomColor = colors[Math.floor(Math.random() * colors.length)];
+                const randomSize = Math.random() * 20 + 10;
+                const randomXOffset = Math.random() * 100 - 50;
+                particle.classList.add('particle', randomColor);
+                particle.style.width = `${randomSize}px`;
+                particle.style.height = `${randomSize}px`;
+                particle.style.left = `${throwerPosition.left + throwerPosition.width / 2 + randomXOffset}px`;
+                particle.style.top = `${throwerPosition.top + throwerPosition.height / 2}px`;
+                container.appendChild(particle);
+                const xDestination = (Math.random() - 0.5) * (targetPosition.left - throwerPosition.left);
+                const yDestination = (Math.random() - 0.5) * 250;
+                particle.style.setProperty('--x', `${xDestination}px`);
+                particle.style.setProperty('--y', `${yDestination}px`);
+                setTimeout(() => { particle.remove(); }, 2000);
+            }
+        }
+
+        // Trigger confetti effect
+        function triggerConfetti() {
+            confetti({
+                particleCount: 100, // Number of confetti particles
+                spread: 70, // Spread of the confetti
+                origin: { y: 0.6 }, // Origin of the confetti
+                colors: ['#FF6B6B', '#FFD93D', '#6BCB77', '#6B9DFD'] // Custom colors
+            });
+        }
+
+        // Throw colors and trigger confetti every 2.5 seconds
+        setInterval(() => {
+            throwColor();
+            triggerConfetti();
+        }, 2500);
+
+        // Trigger confetti on hover over "Happy Holi" text
+        document.querySelector('.happy-holi').addEventListener('mouseover', () => {
+            triggerConfetti();
+        });
+    </script>
+</body>
+</html>
